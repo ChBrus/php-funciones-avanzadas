@@ -1,0 +1,20 @@
+Options All -Indexes
+Options -MultiViews
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /php-builder/
+
+    RewriteRule /(vendor|app)/ - [F,L]
+</IfModule>
+
+DirectoryIndex index.php
+
+# Protect the htaccess file
+<Files .htaccess>
+Order Allow,Deny
+Deny from all
+</Files>
+
+# Protect secret files, like .gitignore
+RedirectMatch 403 /\..*$
